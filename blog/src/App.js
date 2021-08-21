@@ -10,15 +10,14 @@ function App() {
   ]);
 
   let [따봉, 따봉변경] = useState([0, 0, 0]);
-  let posts = "강남 고기 맛집이다";
   let [modal, modal변경] = useState(false);
   let [누른제목, 누른제목변경] = useState(0);
   let [inven, invenChange] = useState("");
 
+  let [입력값, 입력값변경] = useState("");
+
   const array = [2, 3, 4];
-  const newArray = array.map(function (a) {
-    return a * 2;
-  });
+  const newArray = array.map((a) => a * 2);
 
   function 글변경() {
     var res = [...글제목];
@@ -77,8 +76,7 @@ function App() {
       <div className="publish">
         <input
           onChange={(e) => {
-            invenChange(e.target.value);
-            console.log(글제목);
+            입력값변경(e.target.value);
           }}
         />
         <button
@@ -100,6 +98,7 @@ function App() {
       >
         모달창 여닫기 버튼
       </button>
+
       {modal === true ? (
         <Modal 글제목={글제목} 바보="바부야" 누른제목={누른제목}></Modal>
       ) : null}
