@@ -10,15 +10,14 @@ function App() {
   ]);
 
   let [따봉, 따봉변경] = useState([0, 0, 0]);
-  let posts = "강남 고기 맛집이다";
   let [modal, modal변경] = useState(false);
   let [누른제목, 누른제목변경] = useState(0);
   let [inven, invenChange] = useState("");
 
+  let [입력값, 입력값변경] = useState("");
+
   const array = [2, 3, 4];
-  const newArray = array.map(function (a) {
-    return a * 2;
-  });
+  const newArray = array.map((a) => a * 2);
 
   function 글변경() {
     var res = [...글제목];
@@ -36,6 +35,12 @@ function App() {
     var res = [...따봉];
     res[i]++;
     따봉변경(res);
+  }
+
+  function 버튼누를시입력값변경(e) {
+    let res = [...글제목];
+    res.unshift(e);
+    글제목변경(res);
   }
 
   return (
@@ -77,20 +82,13 @@ function App() {
       <div className="publish">
         <input
           onChange={(e) => {
-            invenChange(e.target.value);
-            console.log(글제목);
+            입력값변경(e.target.value);
           }}
         />
-        <button
-          onClick={() => {
-            var res = [...글제목];
-            res.unshift(inven);
-            글제목변경(res);
-          }}
-        >
-          저장
-        </button>
+        <button onClick={() => 버튼누를시입력값변경(입력값)}>저장</button>
       </div>
+
+      <Profile />
 
       <button
         className="modalbutton"
@@ -115,6 +113,29 @@ function Modal(props) {
       <p>상세내용</p>
     </div>
   );
+}
+
+class Profile extends React.Component {
+  constructor() {
+    super();
+    this.state = { name: "Kim", age: 30 };
+  }
+
+  changeName = () => {
+    this.setState({
+      name: "Park",
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <h3>프로필입니다</h3>
+        <p>저는 {this.state.name} 입니다.</p>
+        <button onClick={this.changeName.bind(this)}>버튼</button>
+      </div>
+    );
+  }
 }
 
 export default App;
