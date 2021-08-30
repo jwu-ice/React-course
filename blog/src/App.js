@@ -37,6 +37,12 @@ function App() {
     따봉변경(res);
   }
 
+  function 버튼누를시입력값변경(e) {
+    let res = [...글제목];
+    res.unshift(e);
+    글제목변경(res);
+  }
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -79,16 +85,10 @@ function App() {
             입력값변경(e.target.value);
           }}
         />
-        <button
-          onClick={() => {
-            var res = [...글제목];
-            res.unshift(inven);
-            글제목변경(res);
-          }}
-        >
-          저장
-        </button>
+        <button onClick={() => 버튼누를시입력값변경(입력값)}>저장</button>
       </div>
+
+      <Profile />
 
       <button
         className="modalbutton"
@@ -98,7 +98,6 @@ function App() {
       >
         모달창 여닫기 버튼
       </button>
-
       {modal === true ? (
         <Modal 글제목={글제목} 바보="바부야" 누른제목={누른제목}></Modal>
       ) : null}
@@ -114,6 +113,29 @@ function Modal(props) {
       <p>상세내용</p>
     </div>
   );
+}
+
+class Profile extends React.Component {
+  constructor() {
+    super();
+    this.state = { name: "Kim", age: 30 };
+  }
+
+  changeName = () => {
+    this.setState({
+      name: "Park",
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <h3>프로필입니다</h3>
+        <p>저는 {this.state.name} 입니다.</p>
+        <button onClick={this.changeName.bind(this)}>버튼</button>
+      </div>
+    );
+  }
 }
 
 export default App;
