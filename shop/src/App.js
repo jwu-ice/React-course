@@ -1,12 +1,4 @@
-import React from "react";
-import {
-  Navbar,
-  Container,
-  Nav,
-  NavDropdown,
-  Jumbotron,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import "./App.css";
 
 function App() {
@@ -38,27 +30,48 @@ function App() {
         </Container>
       </Navbar>
 
-      <Jumbotron className="background">
+      <div className="background">
         <h1>20% Season Off</h1>
         <p>
           This is a simple hero unit, a simple Jumbotron-style component for
           calling extra attention to featured content or information.
         </p>
         <p>
-          <Button variant="primary">Learn More</Button>
+          <Button variant="primary" style={{ marginBottom: "10px" }}>
+            Learn More
+          </Button>
         </p>
-      </Jumbotron>
+      </div>
 
       <div className="container">
         <div className="row">
           <div className="col-md-4">
             <img
-              alt="https://codingapple1.github.io/shop/shoes1.jpg"
+              src="https://codingapple1.github.io/shop/shoes1.jpg"
+              alt="슈즈1"
               width="100%"
             />
+            <h4>상품명</h4>
+            <p>상품설명 & 가격</p>
           </div>
-          <div className="col-md-4">asdasd</div>
-          <div className="col-md-4">asdasd</div>
+          <div className="col-md-4">
+            <img
+              src="https://codingapple1.github.io/shop/shoes2.jpg"
+              alt="슈즈2"
+              width="100%"
+            />
+            <h4>상품명</h4>
+            <p>상품설명 & 가격</p>
+          </div>
+          <div className="col-md-4">
+            <img
+              src="https://codingapple1.github.io/shop/shoes3.jpg"
+              alt="슈즈3"
+              width="100%"
+            />
+            <h4>상품명</h4>
+            <p>상품설명 & 가격</p>
+          </div>
         </div>
       </div>
     </div>
