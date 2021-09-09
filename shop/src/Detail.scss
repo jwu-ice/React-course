@@ -4,26 +4,24 @@ $mainColor: #ff0000;
   color: $mainColor;
 }
 
-.my-alert {
+@mixin 함수() {
   background-color: #eeeeee;
-  padding: 20px;
+  padding: 15px;
   border-radius: 5px;
   max-width: 500px;
+  width: 100%;
+  margin: auto;
 }
 
-// div.container h4 {
-//   color: blue;
-// }
+.my-alert {
+  @include 함수();
+}
 
-// div.container p {
-//   color: skyblue;
-// }
+.my-alert p {
+  margin-bottom: 0;
+}
 
-// div .container p {
-//   h4 {
-//     color: blue;
-//   }
-//   p {
-//     color: skyblue;
-//   }
-// }
+.my-alert2 {
+  @extend .my-alert;
+  background: #ffe591;
+}
