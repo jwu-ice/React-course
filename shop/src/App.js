@@ -35,7 +35,7 @@ function App() {
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
+          <Navbar.Brand href="/">ShoeShop</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -63,29 +63,36 @@ function App() {
         </Container>
       </Navbar>
 
-      <Route exact path="/">
-        <div className="background">
-          <h1>20% Season Off</h1>
-          <p>
-            This is a simple hero unit, a simple Jumbotron-style component for
-            calling extra attention to featured content or information.
-          </p>
-          <p>
-            <Button variant="primary" style={{ marginBottom: "10px" }}>
-              Learn More
-            </Button>
-          </p>
-        </div>
-        <div className="row">
-          {shoes.map((a, i) => {
-            return <Product shoes={shoes[i]} i={i} key={i} />;
-          })}
-        </div>
-      </Route>
-      <Route path="/detail">
-        <Detail />
-      </Route>
-      {/* <Route path="/어쩌구" component={Modal}></Route> */}
+      <Switch>
+        <Route exact path="/">
+          <div className="background">
+            <h1>20% Season Off</h1>
+            <p>
+              This is a simple hero unit, a simple Jumbotron-style component for
+              calling extra attention to featured content or information.
+            </p>
+            <p>
+              <Button variant="primary" style={{ marginBottom: "10px" }}>
+                Learn More
+              </Button>
+            </p>
+          </div>
+          <div className="row">
+            {shoes.map((a, i) => {
+              return <Product shoes={shoes[i]} i={i} key={i} />;
+            })}
+          </div>
+        </Route>
+
+        <Route path="/detail/:id">
+          <Detail shoes={shoes} />
+        </Route>
+        {/* <Route path="/어쩌구" component={Modal}></Route> */}
+
+        <Route path="/:id">
+          <div>이용되지 않는 주소로 들어왔을 때 나오는 글~</div>
+        </Route>
+      </Switch>
     </div>
   );
 }

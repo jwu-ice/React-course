@@ -1,0 +1,29 @@
+$mainColor: #ff0000;
+
+.red {
+  color: $mainColor;
+}
+
+.my-alert {
+  background-color: #eeeeee;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+// div.container h4 {
+//   color: blue;
+// }
+
+// div.container p {
+//   color: skyblue;
+// }
+
+// div .container p {
+//   h4 {
+//     color: blue;
+//   }
+//   p {
+//     color: skyblue;
+//   }
+// }
