@@ -4,11 +4,14 @@ import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import "./App.css";
 import Data from "./data.js";
 import Detail from "./Detail.js";
+import Cart from "./Cart.js";
 import axios from "axios";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch, useHistory } from "react-router-dom";
+
 export let storeContext = React.createContext();
 
 function App() {
+  let history = useHistory();
   let [shoes, shoes변경] = useState(Data);
   let [store, setStore] = useState([10, 11, 12]);
 
@@ -23,7 +26,7 @@ function App() {
 
     return (
       <div className="col-md-4">
-        <Link to={"detail/" + props.i}>
+        <Link to={"/detail/" + props.shoes.id}>
           <img
             style={{ cursor: "pointer" }}
             src={
@@ -52,7 +55,14 @@ function App() {
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/">ShoeShop</Navbar.Brand>
+          <Navbar.Brand
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            ShoeShop
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -80,6 +90,7 @@ function App() {
         </Container>
       </Navbar>
 
+      {/** route */}
       <Switch>
         <Route exact path="/">
           <div className="background">
@@ -154,6 +165,10 @@ function App() {
           </storeContext.Provider>
         </Route>
         {/* <Route path="/어쩌구" component={Modal}></Route> */}
+
+        <Route path="/cart">
+          <Cart></Cart>
+        </Route>
 
         <Route path="/:name">
           <div>이용되지 않는 주소로 들어왔을 때 나오는 글~</div>
