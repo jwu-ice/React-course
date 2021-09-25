@@ -3,15 +3,21 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 import { BrowserRouter } from "react-router-dom";
 
+import { Provider } from "react-redux";
+import { combineReducers, createStore } from "redux";
+
+import { reducer, reducer_alert } from "./reducer";
+
+let store = createStore(combineReducers({ reducer, reducer_alert }));
+
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

@@ -6,6 +6,7 @@ import "./Detail.scss";
 import { storeContext } from "./App.js";
 import { Nav } from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
 
 let Box = styled.div`
   padding-top: 30px;
@@ -54,9 +55,18 @@ function Detail(props) {
             className="btn btn-danger"
             onClick={() => {
               props.setStore([9, 11, 12]);
+              props.dispatch({
+                type: "항목추가",
+                data: {
+                  id: findProduct.id,
+                  name: findProduct.title,
+                  quantity: 1,
+                },
+              });
+              history.push("/cart");
             }}
           >
-            주문하기
+            장바구니에 쏙 넣기
           </button>
           &nbsp;
           <button
@@ -121,4 +131,11 @@ const TabContent = (props) => {
   else if (props.tab === 2) return <div>2번째 내용</div>;
 };
 
-export default Detail;
+function state_store(state) {
+  return {
+    state: state.reducer,
+    alert_bool: state.reducer_alert,
+  };
+}
+
+export default connect(state_store)(Detail);
