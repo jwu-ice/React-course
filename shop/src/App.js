@@ -13,7 +13,6 @@ export let storeContext = React.createContext();
 function App() {
   let history = useHistory();
   let [shoes, shoes변경] = useState(Data);
-  let [store, setStore] = useState([10, 11, 12]);
 
   let [loading, loading변경] = useState(false);
   let [buttonCount, buttonCount변경] = useState(2);
@@ -22,8 +21,6 @@ function App() {
   //
 
   function Product(props) {
-    let store = useContext(storeContext);
-
     return (
       <div className="col-md-4">
         <Link to={"/detail/" + props.shoes.id}>
@@ -41,14 +38,8 @@ function App() {
         <p>
           {props.shoes.content} & {props.shoes.price}
         </p>
-        {store[props.i]}
-        <Test></Test>
       </div>
     );
-  }
-
-  function Test() {
-    return <p> 재고 : {store}</p>;
   }
 
   return (
@@ -107,13 +98,11 @@ function App() {
           </div>
           <div className="container">
             {/*context 사용 value={ 공유값 }*/}
-            <storeContext.Provider value={store}>
-              <div className="row">
-                {shoes.map((a, i) => {
-                  return <Product shoes={a} i={i} key={i} />;
-                })}
-              </div>
-            </storeContext.Provider>
+            <div className="row">
+              {shoes.map((a, i) => {
+                return <Product shoes={a} i={i} key={i} />;
+              })}
+            </div>
             {loading ? <h2>로딩 중 ...</h2> : null}
             <hr />
             {closeButton ? (
@@ -160,9 +149,7 @@ function App() {
         </Route>
 
         <Route path="/detail/:id">
-          <storeContext.Provider value={store}>
-            <Detail store={store} shoes={shoes} setStore={setStore} />
-          </storeContext.Provider>
+          <Detail shoes={shoes} />
         </Route>
         {/* <Route path="/어쩌구" component={Modal}></Route> */}
 
