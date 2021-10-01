@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "./Detail.scss";
 import { Nav } from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 let Box = styled.div`
   padding-top: 30px;
@@ -20,6 +20,7 @@ function Detail(props) {
 
   //
   let findProduct = props.shoes.find((a) => a.id == id);
+  let state = useSelector((state) => state);
 
   return (
     <div className="container">
@@ -130,10 +131,4 @@ const TabContent = (props) => {
   else if (props.tab === 3) return <div>3번째 내용</div>;
 };
 
-function state_store(state) {
-  return {
-    state: state.reducer,
-  };
-}
-
-export default connect(state_store)(Detail);
+export default Detail;
