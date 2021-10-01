@@ -8,9 +8,9 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 
-import { reducer, reducer_alert } from "./reducer";
+import { reducer } from "./reducer";
 
-let store = createStore(combineReducers({ reducer, reducer_alert }));
+let store = createStore(reducer);
 
 ReactDOM.render(
   <BrowserRouter>

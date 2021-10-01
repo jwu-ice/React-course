@@ -1,13 +1,14 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Table, Button, Alert, Col } from "react-bootstrap";
 import { connect, useDispatch, useSelector } from "react-redux";
 
 function Cart(props) {
-  // 쉽게 사용하는 법
+  // state => cart 장바구니
+  // reducer.js => reducer
   let state = useSelector((state) => state);
   let dispatch = useDispatch();
 
-  const [popup, setPopup] = useState(true);
+  const [alert, setAlert] = useState(true);
   return (
     <div>
       <Table striped bordered hover size="sm">
@@ -20,10 +21,10 @@ function Cart(props) {
           </tr>
         </thead>
         <tbody>
-          {popup ? (
-            state.reducer.map((a, i) => {
+          {state[0] ? (
+            state.map((a, i) => {
               return (
-                <tr key={i}>
+                <tr key={a.id}>
                   <td>{a.id}</td>
                   <td>{a.name}</td>
                   <td>{a.quantity}</td>
@@ -56,11 +57,13 @@ function Cart(props) {
               );
             })
           ) : (
-            <h5>장바구니에 상품이 없습니다.</h5>
+            <tr>
+              <td colspan="4">장바구니에 상품이 없습니다.</td>
+            </tr>
           )}
         </tbody>
       </Table>
-      {state.reducer_alert ? (
+      {alert ? (
         <Alert variant="success">
           <Alert.Heading>지금 구매하시면 신규할인 20%</Alert.Heading>
           <p>여러가지 할인혜택을 만나보세요! 지금</p>
@@ -73,7 +76,7 @@ function Cart(props) {
           <Button
             variant="secondary"
             onClick={() => {
-              dispatch({ type: "alert닫기" });
+              setAlert(false);
             }}
           >
             닫기
