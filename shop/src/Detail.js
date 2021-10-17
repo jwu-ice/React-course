@@ -5,7 +5,7 @@ import styled from "styled-components";
 import "./Detail.scss";
 import { Nav } from "react-bootstrap";
 import { CSSTransition } from "react-transition-group";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 let Box = styled.div`
   padding-top: 30px;
@@ -20,6 +20,7 @@ function Detail(props) {
 
   //
   let findProduct = props.shoes.find((a) => a.id == id);
+  let dispatch = useDispatch();
   let state = useSelector((state) => state);
 
   return (
@@ -43,7 +44,7 @@ function Detail(props) {
           <button
             className="btn btn-secondary"
             onClick={() => {
-              props.dispatch({
+              dispatch({
                 type: "항목추가",
                 data: {
                   id: findProduct.id,

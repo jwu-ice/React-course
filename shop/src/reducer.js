@@ -1,4 +1,7 @@
+// 임시 DB
 const default_state = [];
+
+// controller
 function reducer(state = default_state, action) {
   let copy = [...state];
   let findState;
